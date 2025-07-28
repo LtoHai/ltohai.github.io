@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>启动页面</title>
+    <style>
+        /* --- CSS 变量 --- */
+        :root {
+            --bg-color: #f0f2f5;
+            /* 启动按钮的变量 */
+            --launch-button-text-color: #fff;
+            --launch-button-bg: #007bff;
+            --launch-button-hover-bg: #0056b3;
+            --launch-button-shadow-color: rgba(0, 123, 255, 0.3);
+            --launch-button-hover-shadow-color: rgba(0, 123, 255, 0.4);
+            /* 新增：主题切换按钮的变量 */
+            --toggle-button-bg: #e0e0e0;
+            --toggle-button-text: #333;
+            --toggle-button-hover-bg: #d0d0d0;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            /* 启动按钮的变量 */
+            --launch-button-text-color: #e0e0e0;
+            --launch-button-bg: #58a6ff;
+            --launch-button-hover-bg: #3081d9;
+            --launch-button-shadow-color: rgba(88, 166, 255, 0.3);
+            --launch-button-hover-shadow-color: rgba(88, 166, 255, 0.4);
+            /* 新增：主题切换按钮的变量 */
+            --toggle-button-bg: #333;
+            --toggle-button-text: #f0f0f0;
+            --toggle-button-hover-bg: #444;
+        }
+
+        /* 页面整体样式 */
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg-color);
+            transition: background-color 0.3s;
+        }
+
+        /* 启动按钮样式 */
+        .launch-button {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 1.5em;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            color: var(--launch-button-text-color);
+            background-color: var(--launch-button-bg);
+            box-shadow: 0 4px 12px var(--launch-button-shadow-color);
+            transition: all 0.2s ease-in-out;
+        }
+
+        .launch-button:hover {
+            transform: translateY(-2px);
+            background-color: var(--launch-button-hover-bg);
+            box-shadow: 0 6px 16px var(--launch-button-hover-shadow-color);
+        }
+
+        /* 新增：主题切换按钮的样式 */
+        #theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 8px 16px;
+            font-size: 14px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            background-color: var(--toggle-button-bg);
+            color: var(--toggle-button-text);
+            transition: background-color 0.2s;
+        }
+
+        #theme-toggle:hover {
+            background-color: var(--toggle-button-hover-bg);
+        }
+    </style>
+</head>
+<body>
+
+<!-- 新增：主题切换按钮 -->
+<button id="theme-toggle"></button>
+
+<!-- 启动按钮 -->
+<a href="character_panel.html" class="launch-button">打开冒险家日记面板</a>
+
+<!-- 新增：完整的JS逻辑 -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const themeToggle = document.getElementById('theme-toggle');
+        const docElement = document.documentElement;
+
+        /**
+         * 应用指定的主题
+         */
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                docElement.setAttribute('data-theme', 'dark');
+                themeToggle.textContent = '浅色模式';
+            } else {
+                docElement.removeAttribute('data-theme');
+                themeToggle.textContent = '深色模式';
+            }
+        }
+
+        /**
+         * 切换主题并保存到localStorage
+         */
+        function toggleTheme() {
+            const currentTheme = docElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('theme', newTheme);
+            applyTheme(newTheme);
+        }
+
+        // 为按钮添加点击事件监听
+        themeToggle.addEventListener('click', toggleTheme);
+
+        // 页面加载时，应用保存的主题
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        applyTheme(savedTheme);
+    });
+</script>
+
+</body>
+</html>
