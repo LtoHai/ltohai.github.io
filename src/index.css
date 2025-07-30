@@ -1,0 +1,231 @@
+/* src/index.css */
+
+/* 1. 定义 CSS 变量 */
+:root {
+    /* 浅色模式下的变量 */
+    --background-color: #ffffff;
+    --text-color: #213547;
+    --button-bg-color: #f0f0f0;
+    --button-text-color: #333333;
+    --button-hover-bg-color: #e0e0e0;
+    --divider-color: #e0e0e0;
+    --link-color: #065eb5;
+    --link-color-rgb: 6, 94, 181;
+    --chart-grid-color: #d1d5db;
+    --chart-fill-color: rgba(6, 94, 181, 0.3);
+    --panel-bg-color: #f9fafb;
+    /* 绿色按钮的颜色变量 */
+    --export-button-bg: #22c55e;
+    --export-button-text: #ffffff;
+    --export-button-hover-bg: #16a34a;
+}
+
+[data-theme="dark"] {
+    /* 深色模式下的变量 */
+    --background-color: #242424;
+    --text-color: rgba(255, 255, 255, 0.87);
+    --button-bg-color: #1a1a1a;
+    --button-text-color: #ffffff;
+    --button-hover-bg-color: #333333;
+    --divider-color: #424242;
+    --link-color: #1f77c3;
+    --link-color-rgb: 31, 119, 195;
+    --chart-grid-color: #4b5563;
+
+    --chart-fill-color: rgba(31, 119, 195, 0.4);
+    --panel-bg-color: #1f2937;
+    /* 绿色按钮的颜色变量 */
+    --export-button-bg: #22c55e;
+    --export-button-text: #ffffff;
+    --export-button-hover-bg: #16a34a;
+}
+
+/* 2. 全局样式 */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+    margin: 0;
+    min-height: 100vh;
+}
+
+h1 {
+    font-size: 2.5em;
+    line-height: 1.1;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+/* 全局容器，只提供内边距 */
+.main-content {
+    padding: 2rem 1.5rem;
+}
+
+/* 全局分割线 */
+.divider {
+    border: none;
+    height: 1px;
+    background-color: var(--divider-color);
+    width: 50%;
+    margin: 1.5rem 0;
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* 全局页面头部样式 */
+.page-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.back-link {
+    display: inline-flex;
+    color: var(--text-color);
+    transition: transform 0.2s ease-out;
+}
+
+.back-link:hover {
+    text-decoration: none;
+    transform: translateX(-3px);
+}
+
+.page-header h1 {
+    margin: 0;
+}
+
+
+/* --- 角色面板生成器专属样式 --- */
+
+/* 导出按钮的样式 */
+.export-button {
+    display: block; /* 让按钮可以应用 margin: auto */
+    margin: 2rem auto 0; /* 在顶部添加间距，并水平居中 */
+    padding: 0.6rem 1.5rem;
+    font-size: 1em;
+    font-weight: 600;
+    border: none; /* 绿色按钮不需要边框 */
+    /* 使用新的绿色变量 */
+    background-color: var(--export-button-bg);
+    color: var(--export-button-text);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.export-button:hover {
+    background-color: var(--export-button-hover-bg);
+}
+
+/* 面板样式 */
+.character-panel {
+    background-color: var(--panel-bg-color);
+    border: 1px solid var(--divider-color);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    margin: 5rem auto auto;
+    /* 让面板宽度自适应内容，不再错误地拉伸 */
+    width: 50%;
+}
+
+.generator-layout {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 3rem;
+    width: fit-content;
+}
+
+.chart-container {
+    flex-shrink: 0;
+}
+
+.stat-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    min-width: 220px;
+}
+
+.stat-item {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    align-items: center;
+    gap: 1rem;
+}
+
+.stat-item label {
+    font-weight: 600;
+    font-size: 1.2em;
+    text-align: left;
+}
+
+/* 自定义选择框样式 */
+.select-wrapper {
+    position: relative;
+}
+.select-wrapper select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 100%;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding: 0.6rem 2.5rem 0.6rem 1rem;
+    font-size: 1em;
+    font-weight: 500;
+    border-radius: 8px;
+    border: 1px solid var(--divider-color);
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.select-wrapper select:focus {
+    outline: none;
+    border-color: var(--link-color);
+    box-shadow: 0 0 0 3px rgba(var(--link-color-rgb), 0.3);
+}
+.select-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    width: 0.6em;
+    height: 0.6em;
+    background-color: var(--text-color);
+    clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: transform 0.2s;
+}
+
+/* 图表 SVG 样式 */
+.chart-grid line,
+.chart-grid polygon {
+    stroke: var(--chart-grid-color);
+    stroke-width: 1px;
+    fill: none;
+}
+.chart-stat-area {
+    fill: var(--chart-fill-color);
+    stroke: var(--link-color);
+    stroke-width: 2px;
+}
+.chart-labels text {
+    color: var(--text-color);
+    fill: var(--text-color);
+    font-size: 14px;
+    font-weight: 600;
+}
