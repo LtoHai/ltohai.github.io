@@ -1,13 +1,26 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
-    <!-- 您可以在这里放上您自己的网站图标 (favicon) -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LtoHai 主页</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+</head>
+<body>
+<div id="root"></div>
+
+<!-- 添加这个脚本来处理从 404 页面的跳转 -->
+<script>
+    (function() {
+        const redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.pathname) {
+            // 使用 history.replaceState 来更新 URL，而不会在浏览器历史中留下记录
+            // 这会让 React Router 认为我们就在那个路径上
+            history.replaceState(null, null, redirect);
+        }
+    })();
+</script>
+
+<script type="module" src="/src/main.jsx"></script>
+</body>
 </html>
