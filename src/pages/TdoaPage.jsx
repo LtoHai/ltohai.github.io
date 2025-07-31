@@ -21,6 +21,7 @@ function TdoaPage() {
             <h2>工具</h2>
             {/* 使用 Link 组件进行内部导航 */}
             <h3><Link to="/tdoa/character_panel">角色面板生成器</Link></h3>
+            <h3><Link to="/tdoa/fandom_submitter">Fandom Wiki 提交器</Link></h3>
         </>
     );
 }

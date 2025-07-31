@@ -6,6 +6,7 @@ import ThemeToggle from './components/ThemeToggle';
 import HomePage from './pages/HomePage';
 import TdoaPage from './pages/TdoaPage';
 import CharacterPanelPage from './pages/CharacterPanelPage';
+import FandomSubmitterPage from './pages/FandomSubmitterPage'; // 新增导入
 
 function App() {
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
@@ -36,6 +37,9 @@ function App() {
 
                     {/* 当 URL 是 "/tdoa/character_panel" 时，显示新页面 */}
                     <Route path="/tdoa/character_panel" element={<CharacterPanelPage />} />
+
+                    {/* 新增：Fandom 提交器页面 */}
+                    <Route path="/tdoa/fandom_submitter" element={<FandomSubmitterPage />} />
                 </Routes>
             </div>
         </BrowserRouter>

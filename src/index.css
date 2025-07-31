@@ -18,6 +18,10 @@
     --export-button-bg: #22c55e;
     --export-button-text: #ffffff;
     --export-button-hover-bg: #16a34a;
+    /* 新增：通用提交按钮颜色 */
+    --submit-button-bg: #065eb5;
+    --submit-button-text: #ffffff;
+    --submit-button-hover-bg: #054a8f;
 }
 
 [data-theme="dark"] {
@@ -31,13 +35,16 @@
     --link-color: #1f77c3;
     --link-color-rgb: 31, 119, 195;
     --chart-grid-color: #4b5563;
-
     --chart-fill-color: rgba(31, 119, 195, 0.4);
-    --panel-bg-color: #1f2937;
+    --panel-bg-color: #3a3a3a;
     /* 绿色按钮的颜色变量 */
     --export-button-bg: #22c55e;
     --export-button-text: #ffffff;
     --export-button-hover-bg: #16a34a;
+    /* 新增：通用提交按钮颜色 */
+    --submit-button-bg: #1f77c3;
+    --submit-button-text: #ffffff;
+    --submit-button-hover-bg: #1a64a1;
 }
 
 /* 2. 全局样式 */
@@ -228,4 +235,248 @@ a:hover {
     fill: var(--text-color);
     font-size: 14px;
     font-weight: 600;
+}
+
+/* --- Fandom 提交器及通用表单样式 --- */
+
+.form-container {
+    margin-top: -1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1em;
+    background-color: var(--panel-bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--divider-color);
+    border-radius: 8px;
+    box-sizing: border-box; /* 确保 padding 不会影响总宽度 */
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="password"]:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--link-color);
+    box-shadow: 0 0 0 3px rgba(var(--link-color-rgb), 0.3);
+}
+
+.submit-button {
+    align-self: flex-start; /* 按钮靠左对齐 */
+    padding: 0.75rem 2rem;
+    font-size: 1em;
+    font-weight: 600;
+    border: none;
+    background-color: var(--submit-button-bg);
+    color: var(--submit-button-text);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.submit-button:hover:not(:disabled) {
+    background-color: var(--submit-button-hover-bg);
+}
+
+.form-group small {
+    font-size: 0.85em;
+    color: var(--text-color);
+    opacity: 0.8;
+    margin-top: -0.25rem;
+}
+
+/* --- Wikitext 编辑器组件样式 --- */
+
+.wikitext-editor {
+    border: 1px solid var(--divider-color);
+    border-radius: 8px;
+    background-color: var(--background-color);
+}
+
+.editor-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--divider-color);
+    padding: 0 0.5rem;
+}
+
+.tab-button {
+    padding: 0.75rem 1.25rem;
+    border: none;
+    background-color: transparent;
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 500;
+    border-bottom: 3px solid transparent;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.tab-button.active {
+    color: var(--link-color);
+    border-bottom-color: var(--link-color);
+}
+
+.wikitext-editor textarea {
+    border: none; /* 移除文本框的边框，因为它现在在容器内部 */
+    border-radius: 0 0 8px 8px;
+    resize: vertical; /* 只允许垂直方向缩放 */
+}
+
+.wikitext-editor textarea:focus {
+    box-shadow: none; /* 移除聚焦时的阴影 */
+}
+
+.editor-preview {
+    padding: 1rem 1.5rem;
+    min-height: 300px;
+    line-height: 1.6;
+}
+
+.editor-preview h1, .editor-preview h2, .editor-preview h3 {
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    border-bottom: 1px solid var(--divider-color);
+    padding-bottom: 0.3em;
+}
+
+.editor-cheatsheet {
+    padding: 0 1rem 1rem 1rem;
+    font-size: 0.9em;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+/* --- Markdown 编辑器工具栏样式 --- */
+
+.editor-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem;
+    background-color: var(--panel-bg-color);
+    border-bottom: 1px solid var(--divider-color);
+    border-radius: 8px 8px 0 0; /* 只给顶部加圆角 */
+}
+
+.editor-toolbar button {
+    background-color: transparent;
+    border: 1px solid transparent;
+    color: var(--text-color);
+    border-radius: 6px;
+    width: 32px;
+    height: 32px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.editor-toolbar button:hover {
+    background-color: var(--button-hover-bg-color);
+    border-color: var(--divider-color);
+}
+
+.editor-toolbar button b {
+    font-weight: 900;
+}
+
+.editor-toolbar button i {
+    font-style: italic;
+}
+
+/* 调整编辑器主体，因为它现在在工具栏下方 */
+.wikitext-editor .editor-tabs {
+    border-radius: 0;
+}
+
+.wikitext-editor textarea {
+    border-top: none; /* 移除和工具栏相邻的边框 */
+    border-radius: 0 0 8px 8px; /* 确保底部圆角还在 */
+}
+
+/* --- Fandom 提交器提示样式 --- */
+.pre-submit-notice {
+    background-color: rgba(var(--link-color-rgb), 0.1);
+    border-left: 4px solid var(--link-color);
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    margin-top: 0.5rem; /* 与上方元素的间距 */
+    margin-bottom: 1.5rem; /* 与下方按钮的间距 */
+}
+
+.pre-submit-notice p {
+    margin: 0;
+    font-size: 0.95em;
+    color: var(--text-color);
+}
+
+.pre-submit-notice strong {
+    color: var(--link-color);
+}
+
+/* --- Fandom 提交器状态反馈样式 --- */
+.submit-status {
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    text-align: center;
+    font-weight: 500;
+    border: 1px solid transparent;
+}
+
+.submit-status.success {
+    background-color: rgba(34, 197, 94, 0.1); /* 浅绿色 */
+    color: #166534; /* 深绿色 */
+    border-color: rgba(34, 197, 94, 0.3);
+}
+
+.submit-status.error {
+    background-color: rgba(239, 68, 68, 0.1); /* 浅红色 */
+    color: #991b1b; /* 深红色 */
+    border-color: rgba(239, 68, 68, 0.3);
+}
+
+/* 禁用按钮的样式 */
+.submit-button:disabled {
+    background-color: var(--button-hover-bg-color);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.blank {
+    opacity: 0;
+}
+
+/* 调整工具栏按钮以适应不同长度的文本 */
+.editor-toolbar button {
+    min-width: 32px; /* 保证小按钮的最小宽度 */
+    width: auto; /* 允许按钮根据内容自适应宽度 */
+    padding: 0 0.75rem; /* 增加左右内边距 */
+}
+
+/* 模版按钮的专属样式 */
+.toolbar-template-button {
+    margin-left: auto; /* 核心：将按钮推到最右边 */
+    border: 1px solid var(--divider-color) !important; /* 给它一个默认边框 */
+}
+
+.toolbar-template-button:hover {
+    border-color: var(--link-color) !important; /* 悬浮时高亮边框 */
 }
